@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -57,4 +58,10 @@ public class DogRepository {
         return mongoTemplate.findAll(Dog.class);
     }
 
+    public void updateDogkind(Dog dog){
+        mongoTemplate.updateFirst(Query.query(Criteria.where("name").is(dog.getName())
+                        .and("ownerName").is(dog.getOwnerName())
+                        .and("ownerPhoneNumber").is(dog.getOwnerPhoneNumber())),
+                Update.update("kind",dog.getKind()),Dog.class);
+    }
 }
