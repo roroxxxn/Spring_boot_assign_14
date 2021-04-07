@@ -1,6 +1,7 @@
 package org.cnu.realcoding.service;
 
 import org.cnu.realcoding.domain.Dog;
+import org.cnu.realcoding.exception.DogsConflicException;
 import org.cnu.realcoding.exception.DogsNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,16 @@ public class DogManagementService {
 
 
     public void insertDog(Dog dog) {
+
+        //name,ownerName,ownerPhoneNumber 조회하는 f
+        Dog dogf = dogRepository.findDogByAll(dog.getName(),dog.getOwnerName(),dog.getOwnerPhoneNumber());
+
+        if(dogf != null){ //dogf != null
+            throw new DogsConflicException();
+        }
         dogRepository.insertDog(dog);
+
+
     }
 
     public List<Dog> getAllDogs(){
