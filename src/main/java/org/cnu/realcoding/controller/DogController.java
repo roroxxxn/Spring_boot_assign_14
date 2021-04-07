@@ -48,5 +48,10 @@ public class DogController {
         return dogManagementService.getDogByAll(name,ownerName,ownerPhoneNumber);
     }
 
+    @PatchMapping("/dogs/{name}/{ownerName}/{ownerPhoneNumber}")
+    public void updateDogkind(@PathVariable String name, String ownerName, String ownerPhoneNumber, String kind ){
+        dogManagementService.updateDogkind(name, ownerName,ownerPhoneNumber,kind);
+    }
+
 
 }

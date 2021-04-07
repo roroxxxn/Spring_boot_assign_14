@@ -72,4 +72,13 @@ public class DogManagementService {
         return dog;
     }
 
+    public void updateDogkind(String name, String ownerName, String ownerPhoneNumber, String kind){
+        Dog dog = dogRepository.findDogByAll(name,ownerName,ownerPhoneNumber);
+            dog.setKind(kind);
+        if(dog==null){
+            throw new DogsNotFoundException();
+        }
+        dogRepository.updateDogkind(dog);
+    }
+
 }
