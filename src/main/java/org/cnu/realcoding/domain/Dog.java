@@ -15,7 +15,7 @@ public class Dog {
     private String ownerName;
     private String ownerPhoneNumber;
     private List<String> medicalRecords;
-    private int age;
+
 
 
 }
