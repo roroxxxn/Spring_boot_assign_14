@@ -40,6 +40,15 @@ public class DogManagementService {
     }
 
 
+    public Dog getDogByOwnerName(String ownerName) {
+        Dog dog = dogRepository.findDogByOwnerName(ownerName);
+
+        if(dog == null){
+            throw new DogsNotFoundException();
+        }
+
+        return dog;
+    }
 
 
 

@@ -36,6 +36,12 @@ public class DogRepository {
     }
 
 
+    public Dog findDogByOwnerName(String ownerName) {
+
+        return mongoTemplate.findOne(Query.query(Criteria.where("ownerName").is(ownerName)),
+            Dog.class
+        );
+    }
 
 
 
@@ -50,4 +56,5 @@ public class DogRepository {
     public List<Dog> findAllDog() {
         return mongoTemplate.findAll(Dog.class);
     }
+
 }
