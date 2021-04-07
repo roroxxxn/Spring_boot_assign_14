@@ -30,4 +30,27 @@ public class DogManagementService {
         return dog;
     }
 
+    public Dog getDogByOwnerPhoneNumber(String ownerPhoneNumber){
+        Dog dog=dogRepository.findDogByOwnerPhoneNumber(ownerPhoneNumber);
+
+        if(dog==null){
+            throw new DogsNotFoundException();
+        }
+        return dog;
+    }
+
+
+
+
+
+
+    public Dog getDogByAll(String name, String ownerName, String ownerPhoneNumber) {
+        Dog dog=dogRepository.findDogByAll(name,ownerName,ownerPhoneNumber);
+
+        if(dog==null){
+            throw new DogsNotFoundException();
+        }
+        return dog;
+    }
+
 }

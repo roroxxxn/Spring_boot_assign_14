@@ -28,6 +28,24 @@ public class DogRepository {
                 );
     }
 
+    public Dog findDogByOwnerPhoneNumber(String ownerPhoneNumber){
+
+        return mongoTemplate.findOne(Query.query(Criteria.where("ownerPhoneNumber").is(ownerPhoneNumber)),
+                Dog.class
+        );
+    }
+
+
+
+
+
+    public Dog findDogByAll(String name, String ownerName, String ownerPhoneNumber) {
+
+        return mongoTemplate.findOne(Query.query(Criteria.where("name").is(name).and("ownerName").is(ownerName).and("ownerPhoneNumber").is(ownerPhoneNumber)),
+                Dog.class
+        );
+    }
+
 
     public List<Dog> findAllDog() {
         return mongoTemplate.findAll(Dog.class);
